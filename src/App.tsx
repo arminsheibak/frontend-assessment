@@ -1,7 +1,11 @@
+import useDomains from "./hooks/useDomains"
 
 const App = () => {
+  const {data: domains} = useDomains()
   return (
-    <div>App</div>
+    <ul>
+      {domains?.map(domain => <li key={domain.id} >{domain.domain}</li>)}
+    </ul>
   )
 }
 
