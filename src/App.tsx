@@ -6,23 +6,31 @@ import {
 import DomainsTable from "./components/DomainsTable";
 import { useState } from "react";
 import AddDomainForm from "./components/AddDomainForm";
+import SearchInput from "./components/SearchInput";
 
 
 const App = () => {
+  
   const [isMenuOpen, setMenuOpen] = useState(false);
   return (
     <>
       <Box p={"5"}>
         <Heading weight={"light"}>Domains</Heading>
-        <Button
-          size={"3"}
-          mt={"5"}
-          onClick={() => {
-            setMenuOpen(!isMenuOpen);
-          }}
+        <div
+        className="flex mt-4 flex-col md:flex-row md:justify-between gap-2"
         >
-          +Add Domain
-        </Button>
+          <Button
+
+            size={"3"}
+            onClick={() => {
+              setMenuOpen(!isMenuOpen);
+            }}
+          >
+            +Add Domain
+          </Button>
+          <SearchInput />
+        </div>
+
         <DomainsTable />
       </Box>
 
