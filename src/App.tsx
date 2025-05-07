@@ -3,7 +3,6 @@ import {
   Button,
   Heading,
 } from "@radix-ui/themes";
-import useDomains from "./hooks/useDomains";
 import DomainsTable from "./components/DomainsTable";
 import { useState } from "react";
 import AddDomainForm from "./components/AddDomainForm";
@@ -11,7 +10,6 @@ import AddDomainForm from "./components/AddDomainForm";
 
 const App = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const { data: domains } = useDomains();
   return (
     <>
       <Box p={"5"}>
@@ -25,7 +23,7 @@ const App = () => {
         >
           +Add Domain
         </Button>
-        <DomainsTable domains={domains!} />
+        <DomainsTable />
       </Box>
 
       {/* Drawer */}

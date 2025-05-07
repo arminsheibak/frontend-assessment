@@ -12,15 +12,13 @@ import {
   CheckCircledIcon,
   DotsVerticalIcon,
 } from "@radix-ui/react-icons";
-import { Domain } from "../entities/Domain";
 import apiClient from "../services/apiClient";
 import { useQueryClient } from "@tanstack/react-query";
+import useDomains from "../hooks/useDomains";
+import TableSkeleton from "./TableSkeleton";
 
-interface Props {
-    domains: Domain[]
-}
-
-const DomainsTable = ({domains}: Props) => {
+const DomainsTable = () => {
+  const { data: domains, isLoading } = useDomains();
   const queryClient = useQueryClient()
   return (
     <Table.Root variant="surface" mt={"6"} >
@@ -40,6 +38,9 @@ const DomainsTable = ({domains}: Props) => {
         </Table.Row>
       </Table.Header>
       <Table.Body>
+        {isLoading &&
+        <TableSkeleton />
+        }
         {domains?.map((domain) => {
           return (
             <Table.Row key={domain.id}>
