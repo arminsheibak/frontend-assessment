@@ -13,12 +13,15 @@ import {
   DotsVerticalIcon,
 } from "@radix-ui/react-icons";
 import { Domain } from "../entities/Domain";
+import apiClient from "../services/apiClient";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface Props {
     domains: Domain[]
 }
 
 const DomainsTable = ({domains}: Props) => {
+  const queryClient = useQueryClient()
   return (
     <Table.Root variant="surface" mt={"6"} >
       <Table.Header>
@@ -100,7 +103,15 @@ const DomainsTable = ({domains}: Props) => {
                         </Button>
                       </Dialog.Close>
                       <Dialog.Close>
-                        <Button color="red">Delete</Button>
+                        <Button
+                         color="red"
+                         onClick={() => {
+                          apiClient.delete(`/${domain.id}`)
+                          .then(() => queryClient.invalidateQueries({
+                            queryKey: ["domains"]
+                          }))
+                         }}
+                         >Delete</Button>
                       </Dialog.Close>
                     </Flex>
                   </Dialog.Content>
