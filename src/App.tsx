@@ -1,26 +1,18 @@
-import {
-  Box,
-  Button,
-  Heading,
-} from "@radix-ui/themes";
+import { Box, Button, Heading } from "@radix-ui/themes";
 import DomainsTable from "./components/DomainsTable";
 import { useState } from "react";
 import AddDomainForm from "./components/AddDomainForm";
 import SearchInput from "./components/SearchInput";
-
+import FilterSelector from "./components/FilterSelector";
 
 const App = () => {
-  
   const [isMenuOpen, setMenuOpen] = useState(false);
   return (
     <>
       <Box p={"5"}>
         <Heading weight={"light"}>Domains</Heading>
-        <div
-        className="flex mt-4 flex-col md:flex-row md:justify-between gap-2"
-        >
+        <div className="flex mt-4 flex-col md:flex-row md:justify-between gap-2">
           <Button
-
             size={"3"}
             onClick={() => {
               setMenuOpen(!isMenuOpen);
@@ -28,7 +20,10 @@ const App = () => {
           >
             +Add Domain
           </Button>
-          <SearchInput />
+          <div className="flex gap-2" >
+            <SearchInput />
+            <FilterSelector />
+          </div>
         </div>
 
         <DomainsTable />

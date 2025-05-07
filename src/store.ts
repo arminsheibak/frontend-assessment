@@ -2,13 +2,13 @@ import { create } from "zustand";
 
 interface DomainQuery {
     searchText?: string;
-    isActive?: Boolean
+    isActive?: Boolean | undefined
 }
 
 interface DomainQueryStore {
     domainQuery: DomainQuery;
     setSearchText: (searchText: string) => void;
-    setIsActive: (isActive: Boolean) => void;
+    setIsActive: (isActive: Boolean | undefined) => void;
 }
 
 const  useDomainQueryStore = create<DomainQueryStore>((set) => ({
