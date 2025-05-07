@@ -50,7 +50,8 @@ const DomainsTable = () => {
                   color="gray"
                   highContrast
                   underline="hover"
-                  href={domain.domain}
+                  href={`https://${domain.domain}`}
+                  target="_blank"
                 >
                   {domain.isActive ? (
                     <CheckCircledIcon
